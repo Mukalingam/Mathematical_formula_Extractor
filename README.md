@@ -1,11 +1,11 @@
-# pix2tex - LaTeX OCR
+# Mathematical formulae extractor
 The goal of this project is to create a learning based system that takes an image of a math formula and returns corresponding LaTeX code. 
 
-![header](https://user-images.githubusercontent.com/55287601/109183599-69431f00-778e-11eb-9809-d42b9451e018.png)
+![header]![output](https://user-images.githubusercontent.com/86455215/137069736-8ad78502-2038-48fc-a1a6-c5f69ae4aad8.gif)
 
 ## Requirements
 ### Model
-* PyTorch (tested on v1.7.1)
+* PyTorch (tested on v1.9)
 * Python 3.7+ & dependencies (`requirements.txt`)
   ```
   pip install -r requirements.txt
@@ -21,7 +21,7 @@ In order to render the math in many different fonts we use  XeLaTeX, generate a 
 ## Using the model
 1. Download/Clone this repository
 2. For now you need to install the Python dependencies specified in `requirements.txt` (look [above](#Requirements))
-3. Download the `weights.pth` (and optionally `image_resizer.pth`) file from my [Google Drive](https://drive.google.com/drive/folders/1cgmyiaT5uwQJY2pB0ngebuTcK5ivKXIb) and place it in the `checkpoints` directory
+3. Download the `weights.pth` file from my [Google Drive](https://drive.google.com/drive/folders/1DVpyHQIqF-lbeHJ6MAzCHC68pIDb5-po?usp=sharing) and place it in the `checkpoints` directory
 
 Thanks to [@katie-lim](https://github.com/katie-lim), you can use a nice user interface as a quick way to get the model prediction. Just call the GUI with `python gui.py`. From here you can take a screenshot and the predicted latex code is rendered using [MathJax](https://www.mathjax.org/) and copied to your clipboard.
 
@@ -43,7 +43,6 @@ This model will automatically resize the custom image to best resemble the train
 python dataset/dataset.py --equations path_to_textfile --images path_to_images --tokenizer path_to_tokenizer --out dataset.pkl
 ```
 
-You can find my generated training data on the [Google Drive](https://drive.google.com/drive/folders/13CA4vAmOmD_I_dSbvLp-Lf0s6KiaNfuO) as well (formulae.zip - images, math.txt - labels). Repeat the step for the validation and test data. All use the same label text file.
 
 2. Edit the `data` entry in the config file to the newly generated `.pkl` file. Change other hyperparameters if you want to. See `settings/default.yaml` for a template.
 3. Now for the actual training run 
@@ -58,27 +57,13 @@ The model consist of a ViT [[1](#References)] encoder with a ResNet backbone and
 ### Performance
 | BLEU score | normed edit distance |
 | ---------- | -------------------- |
-| 0.88       | 0.10                 |
+| 0.89       | 0.10                 |
 
 ## Data
-We need paired data for the network to learn. Luckily there is a lot of LaTeX code on the internet, e.g. [wikipedia](www.wikipedia.org), [arXiv](www.arxiv.org). We also use the formulae from the [im2latex-100k](https://zenodo.org/record/56198#.V2px0jXT6eA) dataset.
-All of it can be found [here](https://drive.google.com/drive/folders/13CA4vAmOmD_I_dSbvLp-Lf0s6KiaNfuO)
+We need paired data for the network to learn. Luckily there is a lot of LaTeX code on the internet, e.g. [wikipedia](www.wikipedia.org), [arXiv](www.arxiv.org). We also use the formulae from the [I2L-140k](https://paperswithcode.com/paper/teaching-machines-to-code-neural-markup) dataset.
 
 ### Fonts
 Latin Modern Math, GFSNeohellenicMath.otf, Asana Math, XITS Math, Cambria Math
-
-
-## TODO
-- [x] add more evaluation metrics
-- [x] create a GUI
-- [ ] add beam search
-- [ ] support handwritten formulae
-- [ ] reduce model size (distillation)
-- [ ] find optimal hyperparameters
-- [ ] tweak model structure
-- [ ] fix data scraping and scrape more data
-- [ ] trace the model
-
 
 ## Contribution
 Contributions of any kind are welcome.
@@ -86,7 +71,3 @@ Contributions of any kind are welcome.
 ## Acknowledgment
 Code taken and modified from [lucidrains](https://github.com/lucidrains), [rwightman](https://github.com/rwightman/pytorch-image-models), [im2markup](https://github.com/harvardnlp/im2markup), [arxiv_leaks](https://github.com/soskek/arxiv_leaks), [pkra: Mathjax](https://github.com/pkra/MathJax-single-file), [harupy: snipping tool](https://github.com/harupy/snipping-tool)
 
-## References
-[1] [An Image is Worth 16x16 Words](https://arxiv.org/abs/2010.11929)
-
-[2] [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
