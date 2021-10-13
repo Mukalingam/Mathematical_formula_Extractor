@@ -25,8 +25,6 @@ In order to render the math in many different fonts we use  XeLaTeX, generate a 
 
 Thanks to [@katie-lim](https://github.com/katie-lim), you can use a nice user interface as a quick way to get the model prediction. Just call the GUI with `python gui.py`. From here you can take a screenshot and the predicted latex code is rendered using [MathJax](https://www.mathjax.org/) and copied to your clipboard.
 
-![demo](https://user-images.githubusercontent.com/55287601/117812740-77b7b780-b262-11eb-81f6-fc19766ae2ae.gif)
-
 If the model is unsure about the what's in the image it might output a different prediction every time you click "Retry". With the `temperature` parameter you can control this behavior (low temperature will produce the same result).
 
 Alternatively you can use `pix2tex.py` with similar functionality as `gui.py`, only as command line tool. In this case you don't need to install PyQt5. Using this script you can also parse already existing images from the disk.
