@@ -34,6 +34,14 @@ Alternatively you can use `pix2tex.py` with similar functionality as `gui.py`, o
 **Update:** I have trained an image classifier on randomly scaled images of the training data to predict the original size.
 This model will automatically resize the custom image to best resemble the training data and thus increase performance of images found in the wild. To use this preprocessing step, all you have to do is download the second weights file mentioned above. You should be able to take bigger (or smaller) images of the formula and still get a satisfying result
 
+
+## Project Architecture
+In the project Architecture we have an encoder and decoder layers in which the mathematical formulae is detected from the given picture in the encoder layer which is a CNN layer and then the image is sent to the decoder layer which is an RNN layer the mathematical formulae is extracted from the picture and then the same is converted into the latex code in this layer
+
+<img width="359" alt="model_architecture" src="https://user-images.githubusercontent.com/86455215/137071465-428f236c-3aa6-4d47-a930-f9337f857703.png">
+
+
+
 ## Training the model
 1. First we need to combine the images with their ground truth labels. I wrote a dataset class (which needs further improving) that saves the relative paths to the images with the LaTeX code they were rendered with. To generate the dataset pickle file run 
 
