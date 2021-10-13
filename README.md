@@ -1,7 +1,7 @@
 # Mathematical formulae extractor
 The goal of this project is to create a learning based system that takes an image of a math formula and returns corresponding LaTeX code. 
 
-![header]![output](https://user-images.githubusercontent.com/86455215/137069736-8ad78502-2038-48fc-a1a6-c5f69ae4aad8.gif)
+![header]![output](![output](https://user-images.githubusercontent.com/86455215/137102188-1ca50cef-797e-40a8-be8b-8bb7d6ae6272.gif))
 
 ## Requirements
 ### Model
